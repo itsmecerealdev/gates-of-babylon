@@ -1,0 +1,351 @@
+==============================================
+  ____    _  _____ _____ ____     ___  _____ 
+ / ___|  / \|_   _| ____/ ___|   / _ \|  ___|
+| |  _  / _ \ | | |  _| \___ \  | | | | |_   
+| |_| |/ ___ \| | | |___ ___) | | |_| |  _|  
+ \____/_/   \_\_| |_____|____/   \___/|_|    
+                                             
+ ____    _    ______   ___     ___  _   _ 
+| __ )  / \  | __ ) \ / / |   / _ \| \ | |
+|  _ \ / _ \ |  _ \\ V /| |  | | | |  \| |
+| |_) / ___ \| |_) || | | |__| |_| | |\  |
+|____/_/   \_\____/ |_| |_____\___/|_| \_|
+                                          
+==============================================
+
+"I think you're ready to see... the Gates of Babylon!" -Dio
+
+Purpose: To teach you about digital circuit design by making a program that
+can simulate logic gates. Specifically, six logic gates: AND, OR, NOT, NAND,
+NOR, and XOR. You are creating a logical block that takes in N inputs and
+returns a single output. The output it returns depends on what logic gates are
+inside of it.
+
+Input: The user will input N, which is how many inputs the logic block has. N
+must be <= 10 and >= 1.
+The user then repeatedly connects input(s) to a logic gate that is then given
+a new number by the program. The inputs to a gate are given by number, and can
+either be either one of the original inputs, or another gate that is already
+in the system (this means no loops are possible, incidentally). After entering a
+gate, the user can say they are done, which means the last gate's output is
+the output for the overall block.
+
+Output: Either 1) Print the circuit diagram or
+2) Generate a truth table for the logical block, showing all possible
+inputs and what the output of the block will be for those inputs.
+
+Errors:
+Invalid input should result in "BAD INPUT!\n" being printed to the screen and
+quitting.
+Each input pin and gate has to be attached to exactly one gate, no more, no less.
+The exception to this is the last gate entered, which is considered to be the
+output of the circuit.
+
+Sample run for a circuit with 3 pins as input, an AND gate attached to pins
+0 and 1, an OR gate attached to the AND gate (which is now called pin 3) and pin
+2:
+Welcome to the Gates of Babylon!
+How many inputs does your logic block have? (1 to 10)
+3
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+1
+Give the index for the first input:
+0
+Give the index for the second input:
+1
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+2
+Give the index for the first input:
+2
+Give the index for the second input:
+3
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+6
+
+1) Print Circuit Block or 2) Print Truth Table
+1
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 3
+        Value: X
+
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 3
+        Value: X
+
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 4
+        Value: X
+
+Gate Type: AND
+        Input Connected to Index: 0 and 1
+        Output Connected to Index: 4
+        Value: X
+
+Gate Type: OR
+        Input Connected to Index: 2 and 3
+        Output Connected to Index: OUTPUT PIN
+        Value: X
+
+=============================================
+Now we do the same run, but printing out the truth table instead:
+
+We have an AND gate attached to pins 0 and 1, and then an OR connected to the
+result of the AND gate as well as pin2, so the output will be true any time
+either Pin 2 is true, or when both 0 and 1 are true - 
+
+Input Pins (Numbers), Output Pin (O):
+0|1|2|O
+1|1|1|1
+1|1|0|1
+1|0|1|1
+1|0|0|0
+0|1|1|1
+0|1|0|0
+0|0|1|1
+0|0|0|0
+
+============================================
+
+Now a bigger run with 6 input pins, a NOT gate attached to each pin, and then
+an AND attached to all of the results of the NOTS until we have one output
+pin.
+
+Circuit Diagram:
+
+Welcome to the Gates of Babylon!
+How many inputs does your logic block have? (1 to 10)
+6
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+0
+Give the index for the input:
+0
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+0
+Give the index for the input:
+1
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+0
+Give the index for the input:
+2
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+0
+Give the index for the input:
+3
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+0
+Give the index for the input:
+4
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+0
+Give the index for the input:
+5
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+1
+Give the index for the first input:
+6
+Give the index for the second input:
+7
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+1
+Give the index for the first input:
+8
+Give the index for the second input:
+9
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+1
+Give the index for the first input:
+10
+Give the index for the second input:
+11
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+1
+Give the index for the first input:
+12
+Give the index for the second input:
+13
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+1
+Give the index for the first input:
+14
+Give the index for the second input:
+15
+What sort of gate do you want to add?
+0 - NOT, 1 - AND, 2 - OR, 3 - NAND, 4 - NOR, 5 - XOR, 6 - DONE
+6
+
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 6
+        Value: X
+
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 7
+        Value: X
+
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 8
+        Value: X
+
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 9
+        Value: X
+
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 10
+        Value: X
+
+Gate Type: INPUT
+        Input Connected to Index: N.C. and N.C.
+        Output Connected to Index: 11
+        Value: X
+
+Gate Type: NOT
+        Input Connected to Index: 0
+        Output Connected to Index: 12
+        Value: X
+
+Gate Type: NOT
+        Input Connected to Index: 1
+        Output Connected to Index: 12
+        Value: X
+
+Gate Type: NOT
+        Input Connected to Index: 2
+        Output Connected to Index: 13
+        Value: X
+
+Gate Type: NOT
+        Input Connected to Index: 3
+        Output Connected to Index: 13
+        Value: X
+
+Gate Type: NOT
+        Input Connected to Index: 4
+        Output Connected to Index: 14
+        Value: X
+
+Gate Type: NOT
+        Input Connected to Index: 5
+        Output Connected to Index: 14
+        Value: X
+
+Gate Type: AND
+        Input Connected to Index: 6 and 7
+        Output Connected to Index: 15
+        Value: X
+
+Gate Type: AND
+        Input Connected to Index: 8 and 9
+        Output Connected to Index: 15
+        Value: X
+
+Gate Type: AND
+        Input Connected to Index: 10 and 11
+        Output Connected to Index: 16
+        Value: X
+
+Gate Type: AND
+        Input Connected to Index: 12 and 13
+        Output Connected to Index: 16
+        Value: X
+
+Gate Type: AND
+        Input Connected to Index: 14 and 15
+        Output Connected to Index: OUTPUT PIN
+        Value: X
+
+============================================
+Now the truth table for the above circuit:
+
+As you can see, the output is true only if the input is false for all 6 input
+pins
+
+Input Pins (Numbers), Output Pin (O):
+0|1|2|3|4|5|O
+1|1|1|1|1|1|0
+1|1|1|1|1|0|0
+1|1|1|1|0|1|0
+1|1|1|1|0|0|0
+1|1|1|0|1|1|0
+1|1|1|0|1|0|0
+1|1|1|0|0|1|0
+1|1|1|0|0|0|0
+1|1|0|1|1|1|0
+1|1|0|1|1|0|0
+1|1|0|1|0|1|0
+1|1|0|1|0|0|0
+1|1|0|0|1|1|0
+1|1|0|0|1|0|0
+1|1|0|0|0|1|0
+1|1|0|0|0|0|0
+1|0|1|1|1|1|0
+1|0|1|1|1|0|0
+1|0|1|1|0|1|0
+1|0|1|1|0|0|0
+1|0|1|0|1|1|0
+1|0|1|0|1|0|0
+1|0|1|0|0|1|0
+1|0|1|0|0|0|0
+1|0|0|1|1|1|0
+1|0|0|1|1|0|0
+1|0|0|1|0|1|0
+1|0|0|1|0|0|0
+1|0|0|0|1|1|0
+1|0|0|0|1|0|0
+1|0|0|0|0|1|0
+1|0|0|0|0|0|0
+0|1|1|1|1|1|0
+0|1|1|1|1|0|0
+0|1|1|1|0|1|0
+0|1|1|1|0|0|0
+0|1|1|0|1|1|0
+0|1|1|0|1|0|0
+0|1|1|0|0|1|0
+0|1|1|0|0|0|0
+0|1|0|1|1|1|0
+0|1|0|1|1|0|0
+0|1|0|1|0|1|0
+0|1|0|1|0|0|0
+0|1|0|0|1|1|0
+0|1|0|0|1|0|0
+0|1|0|0|0|1|0
+0|1|0|0|0|0|0
+0|0|1|1|1|1|0
+0|0|1|1|1|0|0
+0|0|1|1|0|1|0
+0|0|1|1|0|0|0
+0|0|1|0|1|1|0
+0|0|1|0|1|0|0
+0|0|1|0|0|1|0
+0|0|1|0|0|0|0
+0|0|0|1|1|1|0
+0|0|0|1|1|0|0
+0|0|0|1|0|1|0
+0|0|0|1|0|0|0
+0|0|0|0|1|1|0
+0|0|0|0|1|0|0
+0|0|0|0|0|1|0
+0|0|0|0|0|0|1
+
+============================================
