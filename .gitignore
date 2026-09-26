@@ -1,0 +1,8 @@
+*
+!*.*
+!*/
+*.it
+*.o
+*.d
+a.out
+!Makefile
