@@ -821,38 +821,11 @@
     };
   }
 
-  async function runSimulation() {
+  function runSimulation() {
     const prep = prepareCircuitPayload();
     if (prep.inputNodes.length === 0) return;
 
-    let result = null;
-
-    // Fast-try server API if available (local dev)
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 400);
-      const res = await fetch('/api/simulate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          numInputs: prep.numInputs,
-          inputs: prep.inputs,
-          gates: prep.gates,
-        }),
-        signal: controller.signal,
-      });
-      clearTimeout(timeoutId);
-      if (res.ok) {
-        result = await res.json();
-      }
-    } catch (_) {
-      // Server not present (e.g. GitHub Pages static hosting)
-    }
-
-    // Seamless fallback to client-side engine
-    if (!result) {
-      result = simulateCircuitClientSide(prep);
-    }
+    const result = simulateCircuitClientSide(prep);
 
     if (result.valid && result.gateValues) {
       prep.sortedGates.forEach((g, idx) => {
@@ -874,43 +847,15 @@
     renderNodes();
   }
 
-  async function showTruthTableModal() {
+  function showTruthTableModal() {
     const prep = prepareCircuitPayload();
     if (prep.inputNodes.length === 0) {
       alert('Add at least 1 input pin.');
       return;
     }
 
-    truthTableContainer.innerHTML = '<div style="padding: 16px; color: #a1a1aa;">Computing truth table...</div>';
     truthTableModal.classList.remove('hidden');
-
-    let data = null;
-
-    // Fast-try server API if available
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 800);
-      const res = await fetch('/api/truth-table', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          numInputs: prep.numInputs,
-          gates: prep.gates,
-        }),
-        signal: controller.signal,
-      });
-      clearTimeout(timeoutId);
-      if (res.ok) {
-        data = await res.json();
-      }
-    } catch (_) {
-      // Server not present (e.g. GitHub Pages)
-    }
-
-    // Seamless fallback to client-side engine
-    if (!data) {
-      data = generateTruthTableClientSide(prep);
-    }
+    const data = generateTruthTableClientSide(prep);
 
     if (!data || !data.valid) {
       truthTableSummary.innerHTML = `
