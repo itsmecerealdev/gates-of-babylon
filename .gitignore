@@ -3,6 +3,10 @@
 *.it
 *.o
 *.d
+*.exe
+*.obj
+__pycache__/
+.venv/
 .git/*
 a.out
 !Makefile
