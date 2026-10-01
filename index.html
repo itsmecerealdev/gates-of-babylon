@@ -31,6 +31,9 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
           Truth Table
         </button>
+		<button id="btnHelp" class="btn btn-secondary" title="Logic Gate Help">
+			? Help
+		</button>
         <button id="btnClear" class="btn btn-ghost text-danger" title="Clear Canvas">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
           Clear
@@ -179,6 +182,29 @@
         </div>
       </div>
     </div>
+	<!-- Logic Gate Help Modal -->
+<div class="modal-backdrop hidden" id="gateHelpModal">
+  <div class="modal-window">
+    <div class="modal-header">
+      <div class="modal-title">
+        <h3>Logic Gate Reference</h3>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btnCloseHelp" class="btn-icon-sm">&times;</button>
+      </div>
+    </div>
+
+    <div class="modal-body">
+      <p><strong>NOT:</strong> Flips the input. 0 becomes 1, and 1 becomes 0.</p>
+      <p><strong>AND:</strong> Outputs 1 only when both inputs are 1.</p>
+      <p><strong>OR:</strong> Outputs 1 when at least one input is 1.</p>
+      <p><strong>NAND:</strong> Opposite of AND. Outputs 0 only when both inputs are 1.</p>
+      <p><strong>NOR:</strong> Opposite of OR. Outputs 1 only when both inputs are 0.</p>
+      <p><strong>XOR:</strong> Outputs 1 when the two inputs are different.</p>
+    </div>
+  </div>
+</div>
   </div>
 
   <script src="./static/app.js"></script>

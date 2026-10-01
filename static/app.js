@@ -47,6 +47,10 @@
   const truthTableContainer = document.getElementById('truthTableContainer');
   const truthTableSummary = document.getElementById('truthTableSummary');
 
+	const btnHelp = document.getElementById('btnHelp');
+	const gateHelpModal = document.getElementById('gateHelpModal');
+	const btnCloseHelp = document.getElementById('btnCloseHelp');
+
   // Logic Gate SVG Glyphs (Clean Stroke, Off-White / Blue Accent)
   function renderNotSvg() {
     return `<svg width="52" height="30" viewBox="0 0 54 32">
@@ -943,6 +947,15 @@
     btnCloseModal.addEventListener('click', () => truthTableModal.classList.add('hidden'));
     btnCopyTable.addEventListener('click', copyTruthTableToClipboard);
 
+	btnHelp.addEventListener('click', () => gateHelpModal.classList.remove('hidden'));
+	btnCloseHelp.addEventListener('click', () => gateHelpModal.classList.add('hidden'));
+
+	gateHelpModal.addEventListener('click', (e) => {
+		if (e.target === gateHelpModal) {
+		gateHelpModal.classList.add('hidden');
+		}
+	});
+
     truthTableModal.addEventListener('click', (e) => {
       if (e.target === truthTableModal) truthTableModal.classList.add('hidden');
     });
@@ -968,6 +981,8 @@
         }
       } else if (e.key === 'Escape') {
         truthTableModal.classList.add('hidden');
+		gateHelpModal.classList.add('hidden');
+
         if (state.connecting) {
           state.connecting = null;
           renderWires();
